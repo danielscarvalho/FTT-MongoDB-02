@@ -14,7 +14,14 @@ public class AppMongoDB {
     // Libs: /lib folder
 	// https://mvnrepository.com/artifact/com.google.code.gson/gson/2.8.5
 	// https://mvnrepository.com/artifact/org.mongodb/mongo-java-driver/3.8.2
+	
 	// Tutorial: https://www.mongodb.com/blog/post/getting-started-with-mongodb-and-java-part-i
+	
+	// Import data...
+	// ./mongoimport --jsonArray --db ftt --collection people --file /home/engineer/people.json
+	
+	// Referência:
+	// https://books.goalkicker.com/MongoDBBook/
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
