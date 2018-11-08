@@ -19,11 +19,22 @@
   </build>
     <dependencies>
     <!-- https://mvnrepository.com/artifact/org.mongodb/mongo-java-driver -->
+	
 	<dependency>
 	    <groupId>org.mongodb</groupId>
 	    <artifactId>mongo-java-driver</artifactId>
 	    <version>3.8.2</version>
 	</dependency>
-    
+	<!-- http://mongodb.github.io/mongo-java-driver/3.0/driver/getting-started/installation-guide/#mongodb-driver -->
+	
+	<!--
+	<dependency>
+        <groupId>org.mongodb</groupId>
+        
+       
+        <artifactId>mongodb-driver</artifactId>
+        <version>3.8.2</version>
+    </dependency>
+    -->
     </dependencies>
 </project>

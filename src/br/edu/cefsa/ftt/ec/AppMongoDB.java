@@ -22,14 +22,16 @@ public class AppMongoDB {
 	
 	// Referência:
 	// https://books.goalkicker.com/MongoDBBook/
+	// https://www.mkyong.com/mongodb/
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-       System.out.println("App MongoDB");
+       System.out.println("App MongoDB - " + new java.util.Date());
        
        Random rand = new Random(); 
        
-       MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
+       //MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
+       MongoClient mongoClient = new MongoClient();
        MongoDatabase mongoDatabase = mongoClient.getDatabase("ftt");
        MongoCollection<Document> collection = mongoDatabase.getCollection("ec-docs");
        
@@ -41,10 +43,15 @@ public class AppMongoDB {
 
        collection.insertOne(fttec);
        
-       System.out.println(collection.countDocuments());
+       collection.deleteMany(new Document().append("docType", "ftt-ec-x"));
+       
+
+       
+       System.out.println("Number of docs: " + collection.countDocuments());
        
        mongoClient.close();
 	
+       
 	}
 
 }
