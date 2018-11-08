@@ -22,7 +22,7 @@ public class AppMongoDB {
 	
 	// Referência:
 	// https://books.goalkicker.com/MongoDBBook/
-	// https://www.mkyong.com/mongodb/
+	// https://mongodb.github.io/mongo-java-driver/
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -45,7 +45,7 @@ public class AppMongoDB {
        
        collection.deleteMany(new Document().append("docType", "ftt-ec-x"));
        
-
+       collection.updateMany(new Document(), new Document().append("val", 0));
        
        System.out.println("Number of docs: " + collection.countDocuments());
        
