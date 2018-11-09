@@ -8,6 +8,7 @@ import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
+import static com.mongodb.client.model.Filters.*;
 
 public class AppMongoDB {
 	
@@ -35,17 +36,28 @@ public class AppMongoDB {
        MongoDatabase mongoDatabase = mongoClient.getDatabase("ftt");
        MongoCollection<Document> collection = mongoDatabase.getCollection("ec-docs");
        
-       Document fttec = new Document()
+       Document docFttec = new Document()
     		   .append("date",    new Date().toString())
     		   .append("val",     rand.nextFloat())
     		   .append("sal",     rand.nextInt())
     		   .append("docType", "ftt-ec");
 
-       collection.insertOne(fttec);
+       collection.insertOne(docFttec);
        
-       collection.deleteMany(new Document().append("docType", "ftt-ec-x"));
+       //Document myDoc = collection.find().first();
+       //System.out.println(myDoc.toJson());
        
-       collection.updateMany(new Document(), new Document().append("val", 0));
+       //eq = equals
+       //Document myDoc = collection.find(eq("counter", 7)).first();
+       //System.out.println(myDoc.toJson());
+       
+       //collection.updateOne(eq("counter", 1), new Document("$set", new Document("counter", 100)));
+       
+       //collection.updateOne(eq("counter", 0), new Document("$set", new Document("status", "ok")));
+       
+       //collection.deleteMany(new Document().append("docType", "ftt-ec-x"));
+       
+       //collection.updateMany(new Document(), new Document().append("val", 0));
        
        System.out.println("Number of docs: " + collection.countDocuments());
        
