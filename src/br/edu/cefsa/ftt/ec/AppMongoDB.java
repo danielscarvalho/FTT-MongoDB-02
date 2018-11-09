@@ -1,6 +1,9 @@
 package br.edu.cefsa.ftt.ec;
 
+import java.io.File;
+import java.io.InputStream;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 import com.mongodb.MongoClient;
@@ -8,6 +11,8 @@ import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
+import org.bson.types.ObjectId;
+
 import static com.mongodb.client.model.Filters.*;
 
 public class AppMongoDB {
@@ -32,6 +37,7 @@ public class AppMongoDB {
        Random rand = new Random(); 
        
        //MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
+       //MongoClient mongoClient = new MongoClient(new MongoClientURI("mbd01","mbd02","mbd03"));
        MongoClient mongoClient = new MongoClient();
        MongoDatabase mongoDatabase = mongoClient.getDatabase("ftt");
        MongoCollection<Document> collection = mongoDatabase.getCollection("ec-docs");
@@ -45,25 +51,34 @@ public class AppMongoDB {
        collection.insertOne(docFttec);
        
        //Document myDoc = collection.find().first();
-       //System.out.println(myDoc.toJson());
+       Document myDoc = collection.find(eq("_id",new ObjectId("5be4d35f570d815cf5b6dd69"))).first();
+       System.out.println(myDoc.toJson());
        
        //eq = equals
        //Document myDoc = collection.find(eq("counter", 7)).first();
        //System.out.println(myDoc.toJson());
        
+       // The $set operator replaces the value of a field with the specified value.
        //collection.updateOne(eq("counter", 1), new Document("$set", new Document("counter", 100)));
        
        //collection.updateOne(eq("counter", 0), new Document("$set", new Document("status", "ok")));
        
        //collection.deleteMany(new Document().append("docType", "ftt-ec-x"));
        
-       //collection.updateMany(new Document(), new Document().append("val", 0));
+       //collection.updateMany(eq("docType","ftt-ec"),  new Document("$set", new Document("category", "approved")));
        
        System.out.println("Number of docs: " + collection.countDocuments());
-       
+             
+
+   	   
        mongoClient.close();
 	
        
+	}
+	
+	static String convertStreamToString(java.io.InputStream is) {
+	    java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
+	    return s.hasNext() ? s.next() : "";
 	}
 
 }
